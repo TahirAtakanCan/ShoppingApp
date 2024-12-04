@@ -34,11 +34,26 @@ struct WelcomeView: View {
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 20)
                 
+                Button {
+                    
+                }label: {
+                    Text("Get Started")
+                        .font(.customfont(.semibold, fontSize: 18))
+                        .foregroundStyle(.white)
+                        .multilineTextAlignment(.center)
+                }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+                .background(Color.primaryApp)
+                .cornerRadius(20)
+                
                 Spacer()
                     .frame(height: 60)
             }
             .padding(.horizontal, 20)
         }
+        .navigationTitle("")
+        .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden)   // eski kullanım navigationBarHidden(true)
         .ignoresSafeArea()
     }
 }
