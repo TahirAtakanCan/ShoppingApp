@@ -32,22 +32,18 @@ struct WelcomeView: View {
                     .font(.customfont(.medium, fontSize: 16))
                     .foregroundStyle(.white.opacity(0.7))
                     .multilineTextAlignment(.center)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 30)
                 
-                Button {
-                    
-                }label: {
-                    Text("Get Started")
-                        .font(.customfont(.semibold, fontSize: 18))
-                        .foregroundStyle(.white)
-                        .multilineTextAlignment(.center)
+                NavigationLink{
+                    SignInView()
+                }label:{
+                    RoundButton(title: "Get Started"){
+                        
+                    }
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
-                .background(Color.primaryApp)
-                .cornerRadius(20)
                 
                 Spacer()
-                    .frame(height: 60)
+                    .frame(height: 80)
             }
             .padding(.horizontal, 20)
         }
@@ -58,6 +54,10 @@ struct WelcomeView: View {
     }
 }
 
-#Preview {
-    WelcomeView()
+struct WelcomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            WelcomeView()
+        }
+    }
 }
