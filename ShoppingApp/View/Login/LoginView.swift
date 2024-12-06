@@ -12,7 +12,8 @@ struct LoginView: View {
     // Burada sonradan kaldırılmış bir özellik koydum. Daha sonra değiştirebilirim.
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
-    @State var txtEmail: String = ""
+    @StateObject var loginVM: MainViewModel = MainViewModel()
+    
     
     var body: some View {
         ZStack {
@@ -41,16 +42,12 @@ struct LoginView: View {
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, .screenWidth * 0.1)
                 
-                VStack {
-                    Text("Email")
-                        .font(.customfont(.semibold, fontSize: 16))
-                        .foregroundColor(.textTitle)
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                    
-                    //TextField("", text: )
-                    
-                    Divider()
-                }
+                LineTextField(txt: $loginVM.txtEmail, title: "Email", placholder: "Enter your email address", keyboradType: .emailAddress)
+                    .padding(.bottom, .screenWidth *  0.07)
+                
+                LineTextField(txt: $loginVM.txtPassword, title: "Password", placholder: "Enter your password", isPassword: loginVM.isShowPassword)
+                    .modifier(ShowButton(isShow: $loginVM.isShowPassword))
+                
                 
                 Spacer()
             }
