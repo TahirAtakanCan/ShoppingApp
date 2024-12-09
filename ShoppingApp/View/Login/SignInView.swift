@@ -60,6 +60,32 @@ struct SignInView: View {
                             .frame(minWidth: 0, maxWidth: .infinity)
                     }
                     
+                    NavigationLink{
+                        LoginView()
+                    }label: {
+                        Text("Continue with Email Sign In")
+                            .font(.customfont(.semibold, fontSize: 18))
+                            .foregroundStyle(.white)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+                    .background(Color(hex: "5383EC"))
+                    .cornerRadius(20)
+                    .padding(.bottom, 8)
+                    
+                    NavigationLink{
+                        SignUpView()
+                    }label: {
+                        Text("Continue with Email Sign Up")
+                            .font(.customfont(.semibold, fontSize: 18))
+                            .foregroundStyle(.white)
+                            .multilineTextAlignment(.center)
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+                    .background(Color.primaryApp)
+                    .cornerRadius(20)
+                    .padding(.bottom, 8)
+                    
                     Divider()
                         .padding(.bottom, 25)
                     
@@ -106,7 +132,7 @@ struct SignInView: View {
                 }
                 .padding(.horizontal, 20)
                 .frame(width: .screenWidth, alignment: .leading)
-                .padding(.top, .topInsets + .screenWidth)
+                .padding(.top, .topInsets + .screenWidth * 0.6)
                 
                 
             }
