@@ -19,7 +19,7 @@ class MainViewModel: ObservableObject {
     
     init() {
         #if DEBUG
-        txtEmail = "test@ğmail.com"
+        txtEmail = "test@gmail.com"
         txtPassword = "123456"
         #endif
     }
