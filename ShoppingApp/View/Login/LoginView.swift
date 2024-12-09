@@ -102,6 +102,10 @@ struct LoginView: View {
             .padding(.top, .topInsets)
             .padding(.horizontal, 20)
         }
+        .alert(isPresented: $loginVM.showError) {
+            Alert(title: Text(Globs.AppName), message: Text(loginVM.errorMessage), dismissButton: .default(Text("OK")))
+        }
+        
         .background(Color.white)
         .navigationTitle("")
         .navigationBarBackButtonHidden(true)
