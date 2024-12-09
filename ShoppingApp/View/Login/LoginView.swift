@@ -42,11 +42,11 @@ struct LoginView: View {
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, .screenWidth * 0.1)
                 
-                LineTextField(txt: $loginVM.txtEmail, title: "Email", placholder: "Enter your email address", keyboradType: .emailAddress)
+                LineTextField(title: "Email", placholder: "Enter your email address", txt: $loginVM.txtEmail, keyboradType: .emailAddress)
                     .padding(.bottom, .screenWidth *  0.07)
                 
-                LineTextField(txt: $loginVM.txtPassword, title: "Password", placholder: "Enter your password", isPassword: loginVM.isShowPassword)
-                    .modifier(ShowButton(isShow: $loginVM.isShowPassword))
+                LineSecureField(title: "Password", placholder: "Enter your password", txt: $loginVM.txtPassword, isShowPassword: $loginVM.isShowPassword)
+                    
                 
                 
                 Spacer()
