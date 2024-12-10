@@ -29,48 +29,68 @@ struct SignUpView: View {
                     .frame(width: 40)
                     .padding(.bottom, .screenWidth * 0.1)
                 
-                Text("Loging")
+                Text("Sign Up")
                     .font(.customfont(.semibold, fontSize: 26))
                     .foregroundColor(.primaryText)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 4)
                 
-                Text("Enter your emails and password")
+                Text("Enter your credentials to continue")
                     .font(.customfont(.semibold, fontSize: 16))
                     .foregroundColor(.secondaryText)
                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, .screenWidth * 0.1)
                 
+                LineTextField(title: "Username", placholder: "Enter your email username", txt: $mainVM.txtUsername, keyboradType: .emailAddress)
+                    .padding(.bottom, .screenWidth *  0.07)
+                
                 LineTextField(title: "Email", placholder: "Enter your email address", txt: $mainVM.txtEmail, keyboradType: .emailAddress)
                     .padding(.bottom, .screenWidth *  0.07)
                 
                 LineSecureField(title: "Password", placholder: "Enter your password", txt: $mainVM.txtPassword, isShowPassword: $mainVM.isShowPassword)
-                    .padding(.bottom, .screenWidth *  0.02)
+                    .padding(.bottom, .screenWidth *  0.04)
                 
-                Button{
-                    
-                }label: {
-                    Text("Forgot Password?")
+                VStack {
+                    Text("By continuing you agree to our")
                         .font(.customfont(.medium, fontSize: 14))
-                        .foregroundColor(.primaryText)
+                        .foregroundColor(.secondaryText)
+                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    
+                    HStack{
+                        Text("Terms of Service")
+                            .font(.customfont(.medium, fontSize: 14))
+                            .foregroundColor(.primaryApp)
+                            
+                        
+                        Text(" and ")
+                            .font(.customfont(.medium, fontSize: 14))
+                            .foregroundColor(.secondaryText)
+                           
+                        
+                        Text("Privacy Policy.")
+                            .font(.customfont(.medium, fontSize: 14))
+                            .foregroundColor(.primaryApp)
+                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding(.bottom, .screenWidth * 0.02)
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
-                .padding(.bottom, .screenWidth *  0.03)
                 
-                RoundButton(title: "Log In"){
-                    mainVM.serviceCallLogin()
+                
+                
+                RoundButton(title: "Sign Up"){
+                    mainVM.serviceCallSignUp()
                 }
                 .padding(.bottom, .screenWidth *  0.05)
                 
                 NavigationLink {
-                    SignUpView()
+                    LoginView()
                 }label: {
                     HStack{
-                        Text("Don't have an account?")
+                        Text("Already have an account?")
                             .font(.customfont(.semibold, fontSize: 14))
                             .foregroundColor(.primaryText)
                         
-                        Text("Sign Up")
+                        Text("Sign In")
                             .font(.customfont(.semibold, fontSize: 14))
                             .foregroundColor(.primaryApp)
                     }
@@ -81,7 +101,7 @@ struct SignUpView: View {
                 
                 Spacer()
             }
-            .padding(.top, .topInsets + 64)
+            .padding(.top, .topInsets + 4)
             .padding(.horizontal, 20)
             .padding(.bottom, .bottomInsets)
         }
@@ -102,9 +122,10 @@ struct SignUpView: View {
             
             Spacer()
         }
-        .padding(.top, .topInsets)
-        .padding(.horizontal, 20)
         
+        .alert(isPresented: $mainVM.showError, content: {
+            Alert(title: Text(Globs.AppName), message: Text(mainVM.errorMessage), dismissButton: .default(Text("OK")))
+        })
         .navigationTitle("")
         .toolbar(.hidden)
         .navigationBarBackButtonHidden(true)
@@ -112,6 +133,9 @@ struct SignUpView: View {
     }
 }
 
-#Preview {
-    SignUpView()
+struct SignUpView_Previews: PreviewProvider {
+    static var previews: some View {
+
+            SignUpView()
+    }
 }
