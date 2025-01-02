@@ -8,21 +8,18 @@
 import SwiftUI
 
 struct MainTabView: View {
+    
+    @StateObject var homeVM = HomeViewModel.shared
+    
     var body: some View {
         ZStack {
             
             VStack {
                 //Spacer()
-                
-                
-                HStack {
-                    Button{
-                        MainViewModel.shared.isUserLogin = false
-                    }label: {
-                        Text("LogOut")
-                    }
-                    
+                TabView(selection: $homeVM.selectedTab){
+                    HomeView().tag(0)
                 }
+                
             }
         }
         .navigationTitle("")
